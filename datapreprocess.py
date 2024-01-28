@@ -1,4 +1,5 @@
 import os
+import json
 
 folder_path = "Dataset/Supermickiii"
 
@@ -29,7 +30,7 @@ for root, dirs, files in os.walk(folder_path):
 
                 # Append JSON object to JSONL file
                 with open(jsonl_file, "a") as f:
-                    f.write(str(json_obj) + "\n")
+                    f.write(json.dumps(json_obj, ensure_ascii=False) + "\n")
                 
                 print(f"Saved example {count+1} to {jsonl_file}")
                 count += 1
