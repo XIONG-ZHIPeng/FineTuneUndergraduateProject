@@ -6,8 +6,6 @@ folder_path = "Dataset/Supermickiii"
 # Initialize JSONL file
 jsonl_file = "trial.jsonl"
 
-# Initialize prompt
-prompt = "生成一篇小红书旅行博主的文章"
 
 count = 0
 for root, dirs, files in os.walk(folder_path):
@@ -24,8 +22,11 @@ for root, dirs, files in os.walk(folder_path):
 
                 # Create JSON object for fine tuning
                 json_obj = {
-                    "prompt": prompt,
-                    "completion": content
+                    "messages":[
+                        {"role":"system","content":"你是一位小红书旅行博主"},
+                        {"role":"user","content":"写一篇旅行博客"},
+                        {"role":"system","content":content}
+                    ]
                 }
 
                 # Append JSON object to JSONL file
@@ -34,7 +35,3 @@ for root, dirs, files in os.walk(folder_path):
                 
                 print(f"Saved example {count+1} to {jsonl_file}")
                 count += 1
-                if count == 50:
-                    break
-    if count == 50:
-        break
