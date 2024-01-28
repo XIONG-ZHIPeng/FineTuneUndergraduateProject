@@ -1,7 +1,7 @@
 import tiktoken
 import jsonlines
 
-def num_tokens_from_messages(messages, model="davinci-002"):
+def num_tokens_from_messages(messages, model="gpt-3.5-turbo"):
     """Return the number of tokens used by a list of messages."""
     try:
         encoding = tiktoken.encoding_for_model(model)
@@ -23,5 +23,5 @@ with jsonlines.open("trial.jsonl") as reader:
 number = num_tokens_from_messages(messages)
 
 print(number)
-print(f"price: {0.006 * number / 1000}")
+print(f"price: {0.008 * number / 1000}")
 print()
